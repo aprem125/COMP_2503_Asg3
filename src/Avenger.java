@@ -3,11 +3,14 @@ public class Avenger implements Comparable<Avenger> {
 	private String heroAlias;
 	private String heroName;
 	private int frequency;
+	private int mentionOrder;
 
-	public Avenger(String alias, String name, int id) {
+
+	public Avenger(String alias, String name) {
 		heroName = name;
 		heroAlias = alias;
-		frequency = 1;
+		frequency = 0;
+        this.mentionOrder = -1;
 	}
 
 	// Getters and Setters
@@ -26,7 +29,13 @@ public class Avenger implements Comparable<Avenger> {
 	public void addFrequency() {
 		this.frequency++;
 	}
-	
+    public int getMentionOrder() {
+        return mentionOrder;
+    }
+
+    public void setMentionOrder(int mentionOrder) {
+        this.mentionOrder = mentionOrder;
+    }
 	/**
 	 * this method compare Avenger Alias 
 	 */
