@@ -1,7 +1,9 @@
-import java.util.Comparator;
+import java.util.Comparator; 
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.NoSuchElementException;
-import java.util.Stack;
+import java.util.Queue;
+
 
 public class BST<T extends Comparable<T>> implements Iterable<T> {
 
@@ -67,6 +69,7 @@ public class BST<T extends Comparable<T>> implements Iterable<T> {
             } else {
                 node.value = findMin(node.right);
                 node.right = remove(node.right, node.value);
+                size++;
             }
         }
 
@@ -132,20 +135,30 @@ public class BST<T extends Comparable<T>> implements Iterable<T> {
     }
 
     private class InOrderIterator implements Iterator<T> {
-        private final Stack<Node<T>> stack;
-
+        private  Queue <Node> q = new LinkedList<>();
+// not correct 
         public InOrderIterator() {
-            stack = new Stack<>();
+        	q = new LinkedList<>();
             Node<T> node = root;
-            while (node != null) {
-                stack.push(node);
-                node = node.left;
-            }
+            inOrderTraversal(root);
+            
         }
+        private void inOrderTraversal(Node r) {
+    		if (r == null)
+    			return;
+    		else {
+    			inOrderTraversal(r.left);
+    			visit(r);
+    			inOrderTraversal(r.right);
+    		}
+    	}
 
+        private void visit(Node v) {
+        	q.add(v);
+        }
         @Override
         public boolean hasNext() {
-            return !stack.isEmpty();
+            return !q.isEmpty();
         }
 
         @Override
@@ -154,16 +167,10 @@ public class BST<T extends Comparable<T>> implements Iterable<T> {
                 throw new NoSuchElementException();
             }
 
-            Node<T> node = stack.pop();
+            Node<T> node = q.remove();
             T value = node.value;
 
-            if (node.right != null) {
-                node = node.right;
-                while (node != null) {
-                    stack.push(node);
-                    node = node.left;
-                }
-            }
+          
 
             return value;
         }

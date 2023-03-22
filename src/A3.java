@@ -57,6 +57,8 @@ public class A3 {
             mostPopularBST.add(avenger);
             leastPopularBST.add(avenger);
         }
+        
+        
     }
 
     private void readInput() {
@@ -119,7 +121,7 @@ public class A3 {
 
     private void printAvengers(BST<Avenger> bst) {
         for (Avenger avenger : bst) {
-            System.out.println(avenger);
+            System.out.print(avenger);
         }
     }
 
@@ -127,7 +129,7 @@ public class A3 {
         int count = 0;
         for (Avenger avenger : bst) {
             if (count++ < topN) {
-                System.out.println(avenger);
+                System.out.print(avenger);
             } else {
                 break;
             }
