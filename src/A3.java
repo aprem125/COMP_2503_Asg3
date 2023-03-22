@@ -34,7 +34,7 @@ public class A3 {
     
     public void run() {
         try {
-            File inputFile = new File("res/input1.txt");
+            File inputFile = new File("res/input15.txt");
             FileReader fileReader = new FileReader(inputFile);
             input = new Scanner(fileReader);
 
@@ -83,13 +83,19 @@ public class A3 {
         }
     }
 
-    private String clean(String word) {
-        return word.toLowerCase().replaceAll("[^a-z]", "");
+    private String clean(String next) {
+        String ret;
+		int inx = next.indexOf('\'');
+		if (inx != -1)
+			ret = next.substring(0, inx).toLowerCase().trim().replaceAll("[^a-z]", "");
+		else
+			ret = next.toLowerCase().trim().replaceAll("[^a-z]", "");
+		return ret;
     }
 
     private void printResults() {
         System.out.println("Total number of words: " + totalwordcount);
-        System.out.println("Number of Avengers Mentioned: " + (alphabeticalBST.size() - 1));
+        System.out.println("Number of Avengers Mentioned: " + alphabeticalBST.size());
         System.out.println();
 
         System.out.println("All avengers in the order they appeared in the input stream:");
