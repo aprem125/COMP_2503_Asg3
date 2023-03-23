@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"<Unnamed>","l":"A3"},{"l":"All Classes","url":"allclasses-index.html"},{"p":"<Unnamed>","l":"Avenger"},{"p":"<Unnamed>","l":"AvengerAlphaComparator"},{"p":"<Unnamed>","l":"AvengerComparatorFreqAsc"},{"p":"<Unnamed>","l":"AvengerComparatorFreqDesc"},{"p":"<Unnamed>","l":"AvengerComparatorMentionOrder"},{"p":"<Unnamed>","l":"BST"}]
