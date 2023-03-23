@@ -4,6 +4,12 @@ import java.util.LinkedList;
 import java.util.NoSuchElementException;
 import java.util.Queue;
 
+/**
+ * Represents a Binary Search Tree (BST) with methods for adding, removing, finding,
+ * and iterating through the elements.
+ *
+ * @param <T> The type of elements held in the BST, which should implement Comparable<T>.
+ */
 
 public class BST<T extends Comparable<T>> implements Iterable<T> {
 
@@ -11,16 +17,32 @@ public class BST<T extends Comparable<T>> implements Iterable<T> {
     private Comparator<T> comparator;
     private int size = 0;
 
+	 /**
+     * Constructs an empty BST with a natural order.
+     */
+	
     public BST() {
         root = null;
         comparator = null;
     }
 
+	 /**
+     * Constructs an empty BST with a specified comparator.
+     *
+     * @param comparator The comparator to use for comparing elements.
+     */
+	
     public BST(Comparator<T> comparator) {
         root = null;
         this.comparator = comparator;
     }
 
+  /**
+  * Adds a value to the BST.
+  *
+  * @param value The value to add.
+  */
+	
     public void add(T value) {
         root = add(root, value);
         size++;
@@ -43,6 +65,13 @@ public class BST<T extends Comparable<T>> implements Iterable<T> {
         return node;
     }
 
+	 /**
+     * Removes a value from the BST.
+     *
+     * @param value The value to remove.
+     * @return True if the value was removed, otherwise it will be false.
+     */
+	
     public boolean remove(T value) {
         int originalSize = size;
         root = remove(root, value);
@@ -83,6 +112,13 @@ public class BST<T extends Comparable<T>> implements Iterable<T> {
         return node.value;
     }
 
+	   /**
+     * Finds a value in the BST.
+     *
+     * @param value The value to find.
+     * @return The found value, or null if not found.
+     */
+	
     public T find(T value) {
         Node<T> node = find(root, value);
         return node == null ? null : node.value;
@@ -102,11 +138,23 @@ public class BST<T extends Comparable<T>> implements Iterable<T> {
             return node;
         }
     }
+	
+	 /**
+     * Returns the size of the BST.
+     *
+     * @return The number of elements in the BST.
+     */
 
     public int size() {
         return size;
     }
 
+	 /**
+     * Returns the height of the BST.
+     *
+     * @return The height of the BST.
+     */
+	
     public int height() {
         return height(root);
     }
@@ -128,6 +176,12 @@ if(r == null) {
 		return rh+1;
 	}
 
+/**
+* Returns the optimal height of the BST.
+*
+* @return The optimal height of the BST.
+*/
+	
     public int optimalHeight() {
         return optimalHeight(root);
     }
@@ -145,15 +199,28 @@ if(r == null) {
         }
         return a.compareTo(b);
     }
-
+	
+ /**
+     * Returns an iterator for the BST elements in in-order.
+     *
+     * @return An iterator for the BST elements.
+     */
+	
     @Override
     public Iterator<T> iterator() {
         return new InOrderIterator();
     }
 
+
+	
     private class InOrderIterator implements Iterator<T> {
         private  Queue <Node> q = new LinkedList<>();
 // not correct 
+	  
+        /**
+         * Constructs an in-order iterator for the BST.
+         */
+	    
         public InOrderIterator() {
         	q = new LinkedList<>();
             Node<T> node = root;
@@ -173,11 +240,24 @@ if(r == null) {
         private void visit(Node v) {
         	q.add(v);
         }
+	    
+	       /**
+         * Determines whether there are more elements in the BST.
+         *
+         * @return True if there are more elements, false otherwise.
+         */
+	    
         @Override
         public boolean hasNext() {
             return !q.isEmpty();
         }
-
+   }
+        /**
+         * Returns the next element in the BST in in-order.
+         *
+         * @return The next element in the BST.
+         * @throws NoSuchElementException if there are no more elements.
+         */
         @Override
         public T next() {
             if (!hasNext()) {
@@ -197,7 +277,11 @@ if(r == null) {
         T value;
         Node<T> left;
         Node<T> right;
-
+/**
+     * Represents a node in the BST.
+     *
+     * @param <T> The type of the value held in the node.
+     */
         public Node(T value) {
             this.value = value;
             left = null;
