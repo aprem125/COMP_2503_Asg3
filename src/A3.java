@@ -3,6 +3,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
+/**
+ * A class to analyze text from a file for mentions of Avengers characters.
+ * The program maintains several binary search trees (BSTs) to track the Avengers
+ * in different orders, such as the order they appear in the text, their popularity
+ * (frequency of mentions), and alphabetical order.
+ */
 public class A3 {
 
     public String[][] avengerRoster = { { "captainamerica", "rogers" }, { "ironman", "stark" },
@@ -23,6 +29,14 @@ public class A3 {
         A3 a3 = new A3();
         a3.run();
     }
+	
+	/**
+ * A class to analyze text from a file for mentions of Avengers characters.
+ * The program maintains several binary search trees (BSTs) to track the Avengers
+ * in different orders, such as the order they appear in the text, their popularity
+ * (frequency of mentions), and alphabetical order.
+ */
+	
 /*
     public void run() {
         readInput();
@@ -49,6 +63,11 @@ public class A3 {
             }
         }
     }
+	
+	 /**
+     * Creates alternative order BSTs (mentionBST, mostPopularBST, and leastPopularBST)
+     * based on the alphabeticalBST.
+     */
     private void createAlternativeOrderBSTs() {
         alphabeticalBST.remove(new Avenger("hawkeye", "barton"));
 
@@ -61,6 +80,10 @@ public class A3 {
         
     }
 
+	 /**
+     * Creates alternative order BSTs (mentionBST, mostPopularBST, and leastPopularBST)
+     * based on the alphabeticalBST.
+     */
     private void readInput() {
         while (input.hasNext()) {
             String word = clean(input.next());
@@ -85,6 +108,12 @@ public class A3 {
         }
     }
 
+	 /**
+     * Cleans a given word by converting it to lowercase and removing any non-alphabetic characters.
+     *
+     * @param word The word to clean
+     * @return The cleaned word
+     */
     private String clean(String next) {
         String ret;
 		int inx = next.indexOf('\'');
@@ -95,6 +124,14 @@ public class A3 {
 		return ret;
     }
 
+ 	/**
+     * Prints all Avengers from the BST
+     *  bst The BST contains all of the Avengers that need to be printed 
+     * Prints the top N Avengers in the given BST.
+     * bst  The BST containing the Avengers to print
+     * topN The number of Avengers to print from the top
+     * Prints the heights of the different BSTs along with their optimal heights.
+     */
     private void printResults() {
         System.out.println("Total number of words: " + totalwordcount);
         System.out.println("Number of Avengers Mentioned: " + alphabeticalBST.size());
