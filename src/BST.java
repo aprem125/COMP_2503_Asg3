@@ -111,15 +111,32 @@ public class BST<T extends Comparable<T>> implements Iterable<T> {
         return height(root);
     }
 
-    private int height(Node<T> node) {
-        if (node == null) {
-            return -1;
-        }
-        return 1 + Math.max(height(node.left), height(node.right));
-    }
+    private int height(Node<T> r) {
+		int h = -1;
+		int lh;
+		int rh ;
+if(r == null) {
+	return h;
+}else {
+	 lh = height(r.left);
+	 rh = height(r.right);
+
+}if(lh>rh) {
+	return lh+1;
+}else
+		
+		return rh+1;
+	}
 
     public int optimalHeight() {
+        return optimalHeight(root);
+    }
+    private int optimalHeight(Node<T> r) {
+    	if(r ==null) {
+    		return -1;
+    	}else {
         return (int) (Math.log(size + 1) / Math.log(2));
+    	}
     }
 
     private int compare(T a, T b) {
